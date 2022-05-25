@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "fast_api_example"
+version = "0.1.0"
+description = ""
+authors = ["Robert Durica <r.durica@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.78.0"
+uvicorn = "^0.17.6"
+SQLAlchemy = "^1.4.36"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
