@@ -1,7 +1,5 @@
 from pydantic import BaseModel
 
-from schemas.item import Item
-
 
 class UserBase(BaseModel):
     email: str
@@ -14,7 +12,6 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
     is_active: bool
-    items: list[Item] = []
 
     class Config:
         orm_mode = True

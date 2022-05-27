@@ -11,4 +11,3 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     password_hash = Column(String)
     is_active = Column(Boolean, default=True)
-    items = relationship("Item", back_populates="owner")

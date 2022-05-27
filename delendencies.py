@@ -2,7 +2,7 @@
 from database import SessionLocal
 
 
-def get_database():
+def get_database() -> SessionLocal:
     db = SessionLocal()
     try:
         yield db
