@@ -5,5 +5,9 @@ import routers.users
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(
+    title="Example",
+    description="Api example project based on FastAPI",
+    version="1.0.0"
+)
 app.include_router(routers.users.router)
