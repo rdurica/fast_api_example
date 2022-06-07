@@ -17,6 +17,11 @@ def get_task(task_id: int, db: Session = Depends(get_database)):
     return task
 
 
+@router.get("/tasks/", response_model=list[schemas.Task], tags=["Tasks"])
+def get_tasks(skip: int = 0, limit: int = 10, db: Session = Depends(get_database)):
+    return crud.tasks.get_tasks(db, skip, limit)
+
+
 @router.post("/task/create", response_model=schemas.Task, tags=["Tasks"])
 def create_task(task: schemas.TaskCreate, db: Session = Depends(get_database)):
     try:
@@ -27,6 +32,7 @@ def create_task(task: schemas.TaskCreate, db: Session = Depends(get_database)):
     return new_task
 
 
-@router.get("/tasks/", response_model=list[schemas.Task], tags=["Tasks"])
-def get_tasks(skip: int = 0, limit: int = 10, db: Session = Depends(get_database)):
-    return crud.tasks.get_tasks(db, skip, limit)
+@router.delete("/task/delete/{task_id}", response_description="Successfully deleted", tags=["Tasks"])
+def delete_task_by_id(task_id: int, db: Session = Depends(get_database)):
+    crud.tasks.delete_task(db, task_id)
+    return "Successfully deleted"

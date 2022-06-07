@@ -21,3 +21,9 @@ def create_task(db: Session, task: schemas.task.TaskCreate):
     db.commit()
     db.refresh(new_task)
     return new_task
+
+
+def delete_task(db: Session, task_id: int):
+    """Delete directly due to performance"""
+    db.query(Task).filter(Task.id == task_id).delete()
+    db.commit()
