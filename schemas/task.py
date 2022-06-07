@@ -4,16 +4,23 @@ from schemas.user import User
 
 
 class TaskBase(BaseModel):
-    id: int
     summary: str
     description: str
-    is_completed: bool
+    is_completed: bool = False
 
 
-class TaskCreate(TaskBase):
+class TaskWithId(TaskBase):
+    id: int
+
+
+class TaskView(TaskBase):
     owner: User
 
 
-class Task(TaskCreate):
+class TaskCreate(TaskBase):
+    owner_id: int
+
+
+class Task(TaskView, TaskWithId):
     class Config:
         orm_mode = True

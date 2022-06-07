@@ -17,5 +17,5 @@ def get_user(user_id: int, db: Session = Depends(get_database)):
 
 
 @router.get("/users/", response_model=list[schemas.user.User], tags=["Users"])
-def get_users(db: Session = Depends(get_database)):
-    return crud.users.get_users(db)
+def get_users(skip: int = 0, limit: int = 10, db: Session = Depends(get_database)):
+    return crud.users.get_users(db, skip, limit)
