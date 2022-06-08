@@ -1,5 +1,4 @@
 from sqlalchemy.orm import Session
-
 from models.task import Task
 from models.user import User
 import schemas.task
@@ -14,7 +13,9 @@ def get_tasks(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_task(db: Session, task: schemas.task.TaskCreate):
-    new_task = Task(summary=task.summary, description=task.description, is_completed=task.is_completed,
+    new_task = Task(summary=task.summary,
+                    description=task.description,
+                    is_completed=task.is_completed,
                     owner_id=task.owner_id)
 
     db.add(new_task)
